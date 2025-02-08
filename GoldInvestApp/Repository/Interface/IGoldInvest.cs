@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GoldInvestApp.Repository.Interface
 {
-    interface IGoldInvest
+    public interface IGoldInvest
     {
     }
 }

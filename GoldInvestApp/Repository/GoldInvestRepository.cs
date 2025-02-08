@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GoldInvestApp.Services.Interface
+namespace GoldInvestApp.Repository
 {
-    public interface IGolsInvest
+    public class GoldInvestRepository
     {
     }
 }
