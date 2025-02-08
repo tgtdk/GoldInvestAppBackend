@@ -1,3 +1,7 @@
+using GoldInvestApp.Repository;
+using GoldInvestApp.Repository.Interface;
+using GoldInvestApp.Services;
+using GoldInvestApp.Services.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +30,17 @@ namespace GoldInvestApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+
+
+            #region Dependnncy Injection
+            //GoldInvestRepository : IGoldInvest
+            services.AddScoped<IGolsInvest, GoldInvestService>();
+            services.AddScoped<IGoldInvest, GoldInvestRepository>();
+
+            #endregion
+
+
 
             #region Swagger
 
