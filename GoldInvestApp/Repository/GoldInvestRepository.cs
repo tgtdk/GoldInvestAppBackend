@@ -37,20 +37,21 @@ namespace GoldInvestApp.Repository
                 }
                 //SqlQueries.ReadInformationById
                 //using (MySqlCommand sqlCommand = new MySqlCommand("select" + request.cYear + "from gold_invest_table limit 1", _mySqlConnection))
-                using (MySqlCommand sqlCommand = new MySqlCommand("select cPrice from gold_invest_table where cYear = " + request.cYear, _mySqlConnection))
+                //using (MySqlCommand sqlCommand = new MySqlCommand("select cPrice from gold_invest_table where cYear = " + request.cYear, _mySqlConnection))
+                using (MySqlCommand sqlCommand = new MySqlCommand("getGoldPrice", _mySqlConnection))
                 {
                     try
                     {
-                        sqlCommand.CommandType = System.Data.CommandType.Text;
+                        //sqlCommand.CommandType = System.Data.CommandType.Text;
+                        sqlCommand.CommandType = System.Data.CommandType.StoredProcedure;
                         sqlCommand.CommandTimeout = 180;
-                        sqlCommand.Parameters.AddWithValue(parameterName: "@cYear", request.cYear);
+                        sqlCommand.Parameters.AddWithValue(parameterName: "@nYear", request.cYear);
 
                         using (MySqlDataReader dataReader = await sqlCommand.ExecuteReaderAsync())
                         {
+                            response.cPrice = "0";
                             if (dataReader.HasRows)
                             {
-                                response.cPrice = "";
-
                                 while (await dataReader.ReadAsync())
                                 {
                                     //response.cPrice = dataReader[name: "cPrice"] != DBNull.Value ? Convert.ToString(dataReader[name: "cPrice"]) : string.Empty;
